@@ -97,7 +97,7 @@ class Judge
     public void Fail()
     {
         ConsoleColor tmp = Console.ForegroundColor;
-        Console.ForegroundColor = ConsoleColor.Green;
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Треба більше тренуватись...");
         Console.ForegroundColor = tmp;
     }
