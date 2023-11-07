@@ -59,11 +59,20 @@ class Judge
 
     public void Hit()
     {
+        ConsoleColor tmp = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Влучив!");
+        Console.ForegroundColor = tmp;
         hits++;
     }
 
-    public void Miss() => Console.WriteLine("Промах...");
+    public void Miss()
+    {
+        ConsoleColor tmp = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Промах...");
+        Console.ForegroundColor = tmp;
+    }
 
     public void Results()
     {
@@ -77,21 +86,38 @@ class Judge
         }
     }
 
-    public void Success() => Console.WriteLine("Молодці!");
-    public void Fail() => Console.WriteLine("Треба більше тренуватись...");
+    public void Success()
+    {
+        ConsoleColor tmp = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Молодці!");
+        Console.ForegroundColor = tmp;
+    }
+
+    public void Fail()
+    {
+        ConsoleColor tmp = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Треба більше тренуватись...");
+        Console.ForegroundColor = tmp;
+    }
 }
 
 class Program
 {
     static void Main(string[] args)
     {
+        Console.WriteLine("\t\tЗмагання зі стрільби\n");
         Random rnd = new Random();
         Judge judge = new Judge(rnd.Next(3, 10));
+        Console.WriteLine($"Кількість спортсменів у команді: {judge.count}\n");
         for (int i = 1; i <= judge.count; i++)
         {
             Sportsman sportsman = new Sportsman(i);
             sportsman.onHit += judge.Hit;
             sportsman.onMiss += judge.Miss;
+
+            Console.WriteLine();
             sportsman.Shoot();
         }
         Console.Write("\nРезультати змагання: ");
